@@ -4,16 +4,13 @@
   "private": true,
   "scripts": {
     "build": "pnpm with-env next build",
-    "db:push": "pnpm with-env prisma db push",
-    "db:studio": "pnpm with-env prisma studio",
     "dev": "pnpm with-env next dev",
-    "postinstall": "prisma generate",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
     "start": "pnpm with-env next start",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@prisma/client": "^5.1.1",
+    "@acme/db": "workspace:*",
     "@t3-oss/env-nextjs": "^0.7.0",
     "@tanstack/react-query": "^4.32.6",
     "@trpc/client": "^10.37.1",
@@ -37,7 +34,6 @@
     "@types/react-dom": "^18.2.7",
     "eslint": "^8.51.0",
     "prettier": "^3.0.3",
-    "prisma": "^5.1.1",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   },
