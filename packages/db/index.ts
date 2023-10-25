@@ -4,6 +4,8 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient;
 };
 
+export * from "@prisma/client";
+
 export const db =
   globalForPrisma.prisma ??
   new PrismaClient({

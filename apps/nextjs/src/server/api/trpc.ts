@@ -7,11 +7,12 @@
  * need to use are documented accordingly near the end.
  */
 import { initTRPC } from "@trpc/server";
-import type { NextRequest } from "next/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { db } from "@acme/db";
+import { auth } from "@acme/auth";
+import type { NextRequest } from "next/server";
 
 /**
  * 1. CONTEXT
@@ -22,7 +23,7 @@ import { db } from "@acme/db";
  */
 
 interface CreateContextOptions {
-  headers: Headers;
+  req: NextRequest;
 }
 
 /**
@@ -37,8 +38,9 @@ interface CreateContextOptions {
  */
 export const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
-    headers: opts.headers,
+    req: opts.req,
     db,
+    auth,
   };
 };
 
@@ -52,7 +54,7 @@ export const createTRPCContext = (opts: { req: NextRequest }) => {
   // Fetch stuff that depends on the request
 
   return createInnerTRPCContext({
-    headers: opts.req.headers,
+    req: opts.req,
   });
 };
 

@@ -16,10 +16,13 @@ export const postRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
+      const session = await ctx.auth();
+
 
       return ctx.db.post.create({
         data: {
           name: input.name,
+          authorId: session.user.id,
         },
       });
     }),

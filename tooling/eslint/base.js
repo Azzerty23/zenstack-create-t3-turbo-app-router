@@ -17,6 +17,11 @@ const config = {
   },
   plugins: ["@typescript-eslint", "import"],
   rules: {
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
     "turbo/no-undeclared-env-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -31,6 +36,8 @@ const config = {
       { checksVoidReturn: { attributes: false } },
     ],
     "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "object-curly-spacing": ["error", "always"],
+    "comma-spacing": ["error", { before: false, after: true }],
   },
   ignorePatterns: [
     "**/.eslintrc.cjs",
