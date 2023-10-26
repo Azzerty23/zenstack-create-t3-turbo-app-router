@@ -12,7 +12,7 @@ import { ZodError } from "zod";
 
 import { db } from "@acme/db";
 import { auth } from "@acme/auth";
-import type { NextRequest } from "next/server";
+// import type { NextRequest } from "next/server";
 
 /**
  * 1. CONTEXT
@@ -23,7 +23,7 @@ import type { NextRequest } from "next/server";
  */
 
 interface CreateContextOptions {
-  req: NextRequest;
+  req: Request;
 }
 
 /**
@@ -50,7 +50,7 @@ export const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = (opts: { req: NextRequest }) => {
+export const createTRPCContext = (opts: { req: Request }) => {
   // Fetch stuff that depends on the request
 
   return createInnerTRPCContext({

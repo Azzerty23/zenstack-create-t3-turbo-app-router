@@ -29,6 +29,9 @@ importers:
 
   apps/nextjs:
     dependencies:
+      '@acme/api':
+        specifier: workspace:*
+        version: link:../../packages/api
       '@acme/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -102,6 +105,52 @@ importers:
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  packages/api:
+    dependencies:
+      '@acme/auth':
+        specifier: workspace:*
+        version: link:../auth
+      '@acme/db':
+        specifier: workspace:*
+        version: link:../db
+      '@tanstack/react-query':
+        specifier: ^4.32.6
+        version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
+      '@trpc/client':
+        specifier: ^10.37.1
+        version: 10.37.1(@trpc/server@10.37.1)
+      '@trpc/server':
+        specifier: ^10.37.1
+        version: 10.37.1
+      dotenv-cli:
+        specifier: ^7.3.0
+        version: 7.3.0
+      superjson:
+        specifier: ^1.13.1
+        version: 1.13.1
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: 0.2.0
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: 0.1.0
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: 0.1.0
+        version: link:../../tooling/typescript
+      eslint:
+        specifier: ^8.51.0
+        version: 8.51.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
