@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer tailwind, mantine, app;
+
+@import "@acme/mantine-tailwind-config/globals.css";
+
+@layer app {
+}

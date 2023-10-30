@@ -1,8 +1,10 @@
 import Link from "next/link";
-
 import { CreatePost } from "@/app/_components/create-post";
-import { auth } from "@acme/auth";
 import { api } from "@/trpc/server";
+import { Button } from "@mantine/core";
+
+import { auth } from "@acme/auth";
+import { MyButton } from "@acme/ui";
 
 export default async function Home() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -53,6 +55,8 @@ export default async function Home() {
             >
               {session ? "Sign out" : "Sign in"}
             </Link>
+            <Button>button</Button>
+            <MyButton />
           </div>
         </div>
 
