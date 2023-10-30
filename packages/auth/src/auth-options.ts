@@ -6,6 +6,7 @@ import type { NextAuthConfig } from "next-auth";
 import { db } from "@acme/db";
 
 import { loginOrSignin } from "./authorize";
+import { credentialsConfig } from "./credentials.config";
 
 /**
  * Module augmentation for `next-auth` types
@@ -94,12 +95,7 @@ export const authOptions: NextAuthConfig = {
   adapter: PrismaAdapter(db),
   providers: [
     CredentialsProvider({
-      type: "credentials",
-      credentials: {
-        name: { label: "Name", type: "text", placeholder: "Your name" },
-        email: { type: "email" },
-        password: { type: "password" },
-      },
+      ...credentialsConfig,
       authorize: loginOrSignin(db),
     }),
     //     GoogleProvider({
