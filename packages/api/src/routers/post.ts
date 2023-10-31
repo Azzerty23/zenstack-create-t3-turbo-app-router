@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -11,15 +11,12 @@ export const postRouter = createTRPCRouter({
       };
     }),
 
-  create: publicProcedure
+  create: protectedProcedure
     .input(z.object({ name: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
-      // simulate a slow db call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const session = await ctx.auth();
+    .mutation(({ ctx, input }) => {
+      const { db, session } = ctx;
 
-
-      return ctx.db.post.create({
+      return db.post.create({
         data: {
           name: input.name,
           authorId: session.user.id,

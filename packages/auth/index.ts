@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+
 import { authOptions } from "./src/auth-options";
 
 export type { Session } from "next-auth";
@@ -10,5 +11,4 @@ export type OAuthProviders = (typeof providers)[number];
 export const {
   handlers: { GET, POST },
   auth,
-  CSRF_experimental,
 } = NextAuth(authOptions);
