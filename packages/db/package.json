@@ -29,14 +29,14 @@
     "@acme/tsconfig": "^0.1.0",
     "@faker-js/faker": "^8.2.0",
     "@types/node": "^18.16.0",
+    "@zenstackhq/trpc": "1.2.0",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.51.0",
     "prettier": "^3.0.3",
     "prisma": "^5.5.2",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
-    "zenstack": "1.1.1",
-    "@zenstackhq/trpc": "1.1.1"
+    "zenstack": "1.2.0"
   },
   "eslintConfig": {
     "root": true,
