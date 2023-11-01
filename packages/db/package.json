@@ -16,10 +16,12 @@
     "lint": "eslint .",
     "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
     "typecheck": "tsc --noEmit",
-    "with-env": "dotenv -e ../../.env --"
+    "with-env": "dotenv -e ../../.env --",
+    "zen:generate": "npx zenstack generate --schema ./zmodels/schema.zmodel",
+    "zen:up": "pnpm zen:generate && pnpm db:push"
   },
   "dependencies": {
-    "@prisma/client": "^5.1.1"
+    "@prisma/client": "^5.5.2"
   },
   "devDependencies": {
     "@acme/eslint-config": "^0.2.0",
@@ -30,9 +32,11 @@
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.51.0",
     "prettier": "^3.0.3",
-    "prisma": "^5.1.1",
+    "prisma": "^5.5.2",
     "tsx": "^3.14.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "zenstack": "1.1.1",
+    "@zenstackhq/trpc": "1.1.1"
   },
   "eslintConfig": {
     "root": true,

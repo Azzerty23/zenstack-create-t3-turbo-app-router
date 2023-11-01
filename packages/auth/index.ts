@@ -12,3 +12,5 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth(authOptions);
+
+export { getEnhancedPrisma } from "./src/enhanced";

@@ -10,7 +10,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import { auth } from "@acme/auth";
+import { auth, getEnhancedPrisma } from "@acme/auth";
 import { db } from "@acme/db";
 
 // import type { NextRequest } from "next/server";
@@ -40,7 +40,8 @@ interface CreateContextOptions {
 export const createInnerTRPCContext = async ({ req }: CreateContextOptions) => {
   return {
     req,
-    db,
+    unprotectedDb: db,
+    prisma: await getEnhancedPrisma(),
     session: await auth(),
   };
 };
@@ -65,7 +66,7 @@ export const createTRPCContext = async (opts: { req: Request }) => {
  * errors on the backend.
  */
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+export const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
   errorFormatter({ shape, error }) {
     return {

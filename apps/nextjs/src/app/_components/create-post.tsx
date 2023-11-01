@@ -1,19 +1,27 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 import { api } from "@/trpc/react";
 
 export function CreatePost() {
   const router = useRouter();
   const [name, setName] = useState("");
 
-  const createPost = api.post.create.useMutation({
+  // const createPost = api.post.create.useMutation({
+  //   onSuccess: () => {
+  //     setName("");
+  //   },
+  // });
+  const createPost = api.createPost.useMutation({
     onSuccess: () => {
       router.refresh();
       setName("");
     },
+  });
+
+  const { data: lastPost } = api.post.findFirst.useQuery({
+    orderBy: { createdAt: "desc" },
   });
 
   return (
@@ -38,6 +46,8 @@ export function CreatePost() {
       >
         {createPost.isLoading ? "Submitting..." : "Submit"}
       </button>
+      <p>Last post:</p>
+      {JSON.stringify(lastPost)}
     </form>
   );
 }

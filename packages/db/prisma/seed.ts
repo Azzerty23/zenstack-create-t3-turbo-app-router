@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+
 import { PrismaClient } from "..";
 import type { User } from "..";
 
@@ -7,8 +8,11 @@ const prisma = new PrismaClient();
 async function main() {
   // await createStudents();
   console.log("Seeding...");
-  await createUser({ 
-    name: faker.person.fullName(), email: `test-${faker.number.int({ min: 100, max: 999 })}@email.fr`, password: "123456" });
+  await createUser({
+    name: faker.person.fullName(),
+    email: `test-${faker.number.int({ min: 100, max: 999 })}@email.fr`,
+    password: "123456",
+  });
 }
 
 main()
@@ -31,4 +35,3 @@ async function createUser(data: Partial<User>) {
   });
   console.log(user);
 }
-

@@ -7,7 +7,7 @@ import { auth } from "@acme/auth";
 import { MyButton } from "@acme/ui";
 
 export default async function Home() {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
+  const hello = await api.hello.query({ text: "from tRPC" });
   const session = await auth();
 
   return (
@@ -70,7 +70,8 @@ async function CrudShowcase() {
   const session = await auth();
   if (!session?.user) return null;
 
-  const latestPost = await api.post.getLatest.query();
+  const latestPost = await api.getLatestPost.query();
+  const countPosts = await api.post.count.query({});
 
   return (
     <div className="w-full max-w-xs">
@@ -79,6 +80,9 @@ async function CrudShowcase() {
       ) : (
         <p>You have no posts yet.</p>
       )}
+      <p className="text-sm text-gray-400">
+        You have {countPosts} posts in your database.
+      </p>
 
       <CreatePost />
     </div>

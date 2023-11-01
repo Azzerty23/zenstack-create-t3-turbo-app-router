@@ -11,12 +11,12 @@ export const postRouter = createTRPCRouter({
       };
     }),
 
-  create: protectedProcedure
+  createPost: protectedProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(({ ctx, input }) => {
-      const { db, session } = ctx;
+      const { prisma, session } = ctx;
 
-      return db.post.create({
+      return prisma.post.create({
         data: {
           name: input.name,
           authorId: session.user.id,
@@ -24,8 +24,8 @@ export const postRouter = createTRPCRouter({
       });
     }),
 
-  getLatest: publicProcedure.query(({ ctx }) => {
-    return ctx.db.post.findFirst({
+  getLatestPost: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.post.findFirst({
       orderBy: { createdAt: "desc" },
     });
   }),

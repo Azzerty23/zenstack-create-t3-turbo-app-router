@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "rm -rf .turbo node_modules",
     "build": "pnpm with-env next build",
     "dev": "pnpm with-env next dev",
     "lint": "dotenv -v SKIP_ENV_VALIDATION=1 next lint",
@@ -33,7 +34,9 @@
     "@mantine/form": "^7.1.7",
     "@mantine/hooks": "^7.1.7",
     "@mantine/modals": "^7.1.7",
-    "@mantine/notifications": "^7.1.7"
+    "@mantine/notifications": "^7.1.7",
+    "@zenstackhq/server": "1.1.1",
+    "@zenstackhq/runtime": "1.1.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "0.2.0",
