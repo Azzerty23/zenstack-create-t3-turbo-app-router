@@ -1,3 +1,6 @@
+// This file cannot be exported from the package index due to build dependencies
+// and Edge runtime compatibility (used in Next.js middleware)
+
 import type { DefaultSession } from "@auth/core/types";
 import type { NextAuthConfig } from "next-auth";
 
