@@ -1,6 +1,6 @@
-import Link from "next/link";
-
 import { auth } from "@acme/auth";
+
+import { LoginForm } from "../login-form";
 
 export default async function LoginPage() {
   const session = await auth();
@@ -16,12 +16,7 @@ export default async function LoginPage() {
             <p className="text-center text-2xl text-white">
               {session && <span>Logged in as {session.user.name}</span>}
             </p>
-            <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-            >
-              {session ? "Sign out" : "Sign in"}
-            </Link>
+            <LoginForm />
           </div>
         </div>
       </div>

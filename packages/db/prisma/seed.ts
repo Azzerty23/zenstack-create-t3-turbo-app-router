@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
+import { enhance } from "@zenstackhq/runtime";
 
 import { PrismaClient } from "..";
-import type { User } from "..";
+import type { Prisma } from "..";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // await createStudents();
   console.log("Seeding...");
   await createUser({
     name: faker.person.fullName(),
@@ -24,8 +24,10 @@ main()
     void prisma.$disconnect();
   });
 
-async function createUser(data: Partial<User>) {
-  const user = await prisma.user.create({
+async function createUser(data: Prisma.UserCreateInput) {
+  // use enhanced prisma client to handle password hashing
+  const db = enhance(prisma);
+  const user = await db.user.create({
     data: {
       name: data.name,
       email: data.email,

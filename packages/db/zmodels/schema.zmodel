@@ -20,19 +20,22 @@ plugin prisma {
 plugin trpc {
   provider = '@zenstackhq/trpc'
   output = '../../api/src/generated'
+  generateClientHelpers = 'next'
 }
 
 model User {
     id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
+    name          String
+    email         String    @email @unique
     emailVerified DateTime?
-    password      String?
+    password      String   @password @omit
     role          String    @default("user")
     image         String?
     createdPosts  Post[]
     accounts      Account[]
     sessions      Session[]
+
+    @@allow('all', true)
 }
 
 model Post {

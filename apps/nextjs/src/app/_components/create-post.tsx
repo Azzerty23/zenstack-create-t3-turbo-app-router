@@ -7,15 +7,20 @@ import { api } from "@/trpc/react";
 export function CreatePost() {
   const router = useRouter();
   const [name, setName] = useState("");
+  const utils = api.useUtils();
 
+  // Zenstack router
   // const createPost = api.post.create.useMutation({
   //   onSuccess: () => {
   //     setName("");
   //   },
   // });
+
+  // Custom router
   const createPost = api.createPost.useMutation({
-    onSuccess: () => {
-      router.refresh();
+    onSuccess: async () => {
+      router.refresh(); // refetch server actions
+      await utils.post.findFirst.invalidate(); // invalidate react-query cache
       setName("");
     },
   });

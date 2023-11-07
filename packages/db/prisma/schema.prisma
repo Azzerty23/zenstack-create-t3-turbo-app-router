@@ -13,12 +13,16 @@ generator client {
   output   = "../../../node_modules/.prisma/client"
 }
 
+/// @@allow('all', true)
 model User {
   id            String    @id() @default(cuid())
-  name          String?
-  email         String?   @unique()
+  name          String
+  /// @email
+  email         String    @unique()
   emailVerified DateTime?
-  password      String?
+  /// @password
+  /// @omit
+  password      String
   role          String    @default("user")
   image         String?
   createdPosts  Post[]
