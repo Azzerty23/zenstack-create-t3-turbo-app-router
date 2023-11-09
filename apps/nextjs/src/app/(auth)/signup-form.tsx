@@ -19,6 +19,7 @@ export function SignUpForm() {
         label={
           <>
             I accept the{" "}
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#" className="text-primary-700 hover:underline">
               Terms and Conditions
             </a>
