@@ -27,7 +27,7 @@ declare module "next-auth" {
 export const authConfig = {
   pages: {
     signIn: "/login",
-    newUser: "/signup",
+    // newUser: "/signup",
   },
   providers: [
     // added later in auth.ts since it requires bcrypt which is only compatible with Node.js
@@ -45,6 +45,9 @@ export const authConfig = {
       //   }
       session.user.id = token.sub!;
       return session;
+    },
+    redirect: ({ url, baseUrl }) => {
+      return url.startsWith(baseUrl) ? url : baseUrl;
     },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;

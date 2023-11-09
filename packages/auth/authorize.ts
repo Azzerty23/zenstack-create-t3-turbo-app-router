@@ -31,7 +31,6 @@ export const authorize = async (
     if (!user) return null;
 
     const passwordsMatch = await compare(password, user.password);
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     if (passwordsMatch) return user;
   }
 

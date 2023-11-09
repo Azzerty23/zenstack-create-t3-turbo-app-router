@@ -5,6 +5,9 @@ import { headers } from "next/headers";
 import { theme } from "@/config/theme";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { SessionProvider } from "next-auth/react";
+
+import { auth } from "@acme/auth";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,11 +22,12 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
   return (
     <html lang="en">
       <head>
@@ -35,9 +39,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider headers={headers()}>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
-        </TRPCReactProvider>
+        <SessionProvider session={session}>
+          <TRPCReactProvider headers={headers()}>
+            <MantineProvider theme={theme}>{children}</MantineProvider>
+          </TRPCReactProvider>
+        </SessionProvider>
       </body>
     </html>
   );

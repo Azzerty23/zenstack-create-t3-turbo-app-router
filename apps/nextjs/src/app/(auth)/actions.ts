@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { getEnhancedPrisma, signIn } from "@acme/auth";
@@ -16,10 +15,8 @@ export async function authenticate(
     if ((error as Error).message.includes("CredentialsSignin")) {
       return "CredentialsSignin";
     }
-    console.log("error from authenticate server action :", error);
     throw error;
   }
-  redirect("/");
 }
 
 const signupSchema = z.object({
@@ -44,12 +41,12 @@ export async function signUp(
     const { name, email, password } = parsedCredentials.data;
     const db = await getEnhancedPrisma();
     await db.user.create({ data: { name, email, password } });
-    await signIn("credentials", { email, password });
+    await signIn("credentials", { email, password, redirectTo: "/" });
   } catch (error) {
-    console.log("error from signup server action :", error);
     if ((error as Error).message.includes("CredentialsSignin")) {
       return "CredentialsSignin";
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if ((error as any).info?.prisma && (error as any).info?.code === "P2002") {
       // P2002 is Prisma's error code for unique constraint violations
       return "User already exists";

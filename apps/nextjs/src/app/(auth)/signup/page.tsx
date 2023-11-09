@@ -1,23 +1,19 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import Image from "next/image";
 import Link from "next/link";
 
 import { SignUpForm } from "../signup-form";
 
 export default function Signup() {
   return (
-    <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('/auth-bg.jpg')] bg-cover px-6 pt-4 lg:pt-8">
+    <div className="mx-auto flex h-screen flex-col items-center justify-center px-6 pt-4 lg:pt-8">
       <Link href="/">
         <div className="mb-6 flex items-center space-x-4 lg:mb-10">
-          <Image
+          {/* <Image
             src="/favicon.ico"
             className="rounded-full border border-gray-600"
             width={42}
             height={42}
             alt="logo"
-          />
+          /> */}
           <h1 className="text-4xl text-white">Welcome to Todo</h1>
         </div>
       </Link>
