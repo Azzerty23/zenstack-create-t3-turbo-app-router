@@ -4,6 +4,8 @@
 import type { DefaultSession } from "@auth/core/types";
 import type { NextAuthConfig } from "next-auth";
 
+const PUBLIC_PATHS = ["/login", "/signup"];
+
 /**
  * Module augmentation for `next-auth` types
  * Allows us to add custom properties to the `session` object
@@ -25,6 +27,7 @@ declare module "next-auth" {
 export const authConfig = {
   pages: {
     signIn: "/login",
+    newUser: "/signup",
   },
   providers: [
     // added later in auth.ts since it requires bcrypt which is only compatible with Node.js
@@ -45,9 +48,13 @@ export const authConfig = {
     },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
+      const isOnPublicRoute = PUBLIC_PATHS.includes(nextUrl.pathname);
       const isOnLoginPage = nextUrl.pathname.startsWith("/login");
       if (isOnLoginPage && isLoggedIn) {
         return Response.redirect(new URL("/", nextUrl));
+      }
+      if (isOnPublicRoute) {
+        return true;
       }
       return isLoggedIn; // Redirect unauthenticated users to login page if false
     },

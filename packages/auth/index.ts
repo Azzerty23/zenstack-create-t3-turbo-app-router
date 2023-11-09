@@ -33,7 +33,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
  */
 export async function getEnhancedPrisma() {
   const session = await auth();
-  const user = await db.user.findUnique({
+  const user = await db.user.findFirst({
     where: { id: session?.user?.id },
   });
   return enhance(db, { user: user as User | undefined });

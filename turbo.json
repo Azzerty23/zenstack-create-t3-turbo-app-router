@@ -44,7 +44,9 @@
       "inputs": ["zmodels/schema.zmodel"],
       "outputs": ["**/generated/**"]
     },
-    "zen:up": {}
+    "zen:up": {
+      "inputs": ["zmodels/schema.zmodel"]
+    }
   },
   "globalEnv": ["DATABASE_URL", "NEXTAUTH_SECRET", "NEXTAUTH_URL"]
 }

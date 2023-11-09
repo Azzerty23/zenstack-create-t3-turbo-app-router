@@ -129,3 +129,18 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+// Server action with tRPC: https://github.com/trpc/examples-next-app-dir/blob/main/src/app/server-action/_actions.tsx#L12
+// export const createAction = experimental_createServerActionHandler(t, {
+//   async createContext() {
+//     const session = await auth();
+
+//     return {
+//       session,
+//       headers: {
+//         // Pass the cookie header to the API
+//         cookies: headers().get('cookie') ?? '',
+//       },
+//     };
+//   },
+// });
