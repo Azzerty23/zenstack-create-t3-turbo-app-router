@@ -1,6 +1,11 @@
+/* The last layer overrides the preceding ones */
 @layer tailwind, mantine, app;
 
 @import "@acme/mantine-tailwind-config/globals.css";
 
 @layer app {
+  a {
+    color: #00defb;
+    text-decoration: none;
+  }
 }
