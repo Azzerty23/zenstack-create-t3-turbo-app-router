@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { CreatePost } from "@/app/_components/create-post";
 import { api } from "@/trpc/server";
 import { Button } from "@mantine/core";
 
-import { auth } from "@acme/auth";
+import { auth, signOut } from "@acme/auth";
 import { MyButton } from "@acme/ui";
 
 export default async function Home() {
@@ -49,14 +50,9 @@ export default async function Home() {
             <p className="text-center text-2xl text-white">
               {session && <span>Logged in as {session.user.name}</span>}
             </p>
-            <Link
-              href={session ? "/api/auth/signout" : "/login"}
-              className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-            >
-              {session ? "Sign out" : "Sign in"}
-            </Link>
-            <Button>button</Button>
-            <MyButton />
+            <LoginOutButton />
+            <MyButton className="w-full rounded-full" />
+            <button className="w-full rounded-full bg-red-500">test</button>
           </div>
         </div>
 
@@ -86,5 +82,20 @@ async function CrudShowcase() {
 
       <CreatePost />
     </div>
+  );
+}
+
+async function LoginOutButton() {
+  const session = await auth();
+
+  return (
+    <form
+      action={async () => {
+        "use server";
+        session ? await signOut() : redirect("/login");
+      }}
+    >
+      <Button type="submit">{session ? "Sign out" : "Sign in"}</Button>
+    </form>
   );
 }
