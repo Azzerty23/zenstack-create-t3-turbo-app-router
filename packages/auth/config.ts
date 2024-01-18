@@ -34,18 +34,6 @@ export const authConfig = {
     // while this file is also used in non-Node.js environments
   ],
   callbacks: {
-    session: ({ session, token }) => {
-      //   if (session.user) {
-      //     const user = await db.user.findUniqueOrThrow({
-      //       where: { id: token.sub },
-      //       select: { role: true },
-      //     });
-
-      //     session.user.role = user.role; // <-- put other properties on the session here
-      //   }
-      session.user.id = token.sub!;
-      return session;
-    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnPublicRoute = PUBLIC_PATHS.includes(nextUrl.pathname);
