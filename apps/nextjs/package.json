@@ -29,8 +29,6 @@
     "@trpc/next": "^10.43.0",
     "@trpc/react-query": "^10.43.0",
     "@trpc/server": "^10.43.0",
-    "@zenstackhq/runtime": "1.2.0",
-    "@zenstackhq/server": "1.2.0",
     "dayjs": "^1.11.10",
     "dotenv-cli": "^7.3.0",
     "next": "^14.0.1",
