@@ -26,10 +26,10 @@
   "dependencies": {
     "@acme/prettier-config": "0.1.0",
     "@manypkg/cli": "^0.21.0",
-    "@turbo/gen": "^1.10.15",
-    "prettier": "^3.0.3",
-    "turbo": "^1.10.15",
-    "typescript": "^5.2.2"
+    "@turbo/gen": "^1.11.3",
+    "prettier": "^3.2.4",
+    "turbo": "^1.11.3",
+    "typescript": "^5.3.3"
   },
   "prettier": "@acme/prettier-config"
 }

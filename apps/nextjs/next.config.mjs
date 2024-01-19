@@ -12,10 +12,7 @@ const config = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   experimental: {
-    serverComponentsExternalPackages: [
-      "@zenstackhq/runtime",
-      "@zenstackhq/server",
-    ],
+    serverComponentsExternalPackages: ["@zenstackhq/runtime"],
   },
 };
 

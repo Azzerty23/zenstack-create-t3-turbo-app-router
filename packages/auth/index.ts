@@ -2,7 +2,6 @@ import Credentials from "@auth/core/providers/credentials";
 import { enhance } from "@zenstackhq/runtime";
 import NextAuth from "next-auth";
 
-import type { User } from "@acme/db";
 import { db } from "@acme/db";
 
 import { authorize } from "./authorize";
@@ -14,7 +13,6 @@ export type { Session } from "next-auth";
 export const providers = ["credentials"] as const;
 export type OAuthProviders = (typeof providers)[number];
 
-// eslint-disable-next-line -- fixed in next release. See https://github.com/nextauthjs/next-auth/commit/37219665d89840b194851a1c9ba6768690111e6b
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
   session: {
@@ -33,8 +31,8 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
  */
 export async function getEnhancedPrisma() {
   const session = await auth();
-  const user = await db.user.findFirst({
-    where: { id: session?.user?.id },
+  const user = await db.user.findFirstOrThrow({
+    where: { email: session?.user?.email },
   });
-  return enhance(db, { user: user as User | undefined });
+  return enhance(db, { user });
 }

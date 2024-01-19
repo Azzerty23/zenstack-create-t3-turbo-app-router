@@ -17,15 +17,15 @@
     "@acme/mantine-tailwind-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@mantine/core": "^7.1.7",
-    "@mantine/dates": "^7.1.7",
-    "@mantine/form": "^7.1.7",
-    "@mantine/hooks": "^7.1.7",
-    "@mantine/modals": "^7.1.7",
-    "@mantine/notifications": "^7.1.7",
+    "@mantine/core": "^7.4.2",
+    "@mantine/dates": "^7.4.2",
+    "@mantine/form": "^7.4.2",
+    "@mantine/hooks": "^7.4.2",
+    "@mantine/modals": "^7.4.2",
+    "@mantine/notifications": "^7.4.2",
     "eslint": "^8.51.0",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
   },
   "eslintConfig": {
     "root": true,

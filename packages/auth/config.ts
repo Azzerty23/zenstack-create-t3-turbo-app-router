@@ -1,8 +1,9 @@
 // This file cannot be exported from the package index due to build dependencies
 // and Edge runtime compatibility (used in Next.js middleware)
 
+import type { JWT } from "@auth/core/jwt";
 import type { DefaultSession } from "@auth/core/types";
-import type { NextAuthConfig } from "next-auth";
+import type { NextAuthConfig, Session } from "next-auth";
 
 const PUBLIC_PATHS = ["/login", "/signup"];
 
@@ -34,6 +35,19 @@ export const authConfig = {
     // while this file is also used in non-Node.js environments
   ],
   callbacks: {
+    session: ({ session, token }: {session: Session, token?: JWT}) => {
+      //   if (session.user) {
+      //     const user = await db.user.findUniqueOrThrow({
+      //       where: { id: token.sub },
+      //       select: { role: true },
+      //     });
+
+      //     session.user.role = user.role; // <-- put other properties on the session here
+      //   }
+      session.user.id = token!.sub!;
+      return session;
+    },
+
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnPublicRoute = PUBLIC_PATHS.includes(nextUrl.pathname);
