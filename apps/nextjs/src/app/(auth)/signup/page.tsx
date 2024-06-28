@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Image from "next/image";
 import Link from "next/link";
+import { Title } from "@mantine/core";
 
 import { SignUpForm } from "../signup-form";
 
@@ -18,7 +16,7 @@ export default function Signup() {
             height={42}
             alt="logo"
           />
-          <h1 className="text-4xl text-white">Welcome to Todo</h1>
+          <Title className="text-5xl">Welcome to Todo</Title>
         </div>
       </Link>
       <div className="w-full items-center justify-center rounded-lg bg-white shadow md:mt-0 lg:flex lg:max-w-screen-md xl:p-0">

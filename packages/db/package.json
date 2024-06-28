@@ -21,9 +21,9 @@
     "zen:up": "pnpm zen:generate && pnpm db:push"
   },
   "dependencies": {
-    "@prisma/client": "^5.8.1",
-    "@zenstackhq/runtime": "^1.7.0",
-    "@zenstackhq/server": "^1.7.0"
+    "@prisma/client": "5.15.x",
+    "@zenstackhq/runtime": "^2.2.4",
+    "@zenstackhq/server": "^2.2.4"
   },
   "devDependencies": {
     "@acme/eslint-config": "^0.2.0",
@@ -31,14 +31,14 @@
     "@acme/tsconfig": "^0.1.0",
     "@faker-js/faker": "^8.2.0",
     "@types/node": "^20.11.5",
-    "@zenstackhq/trpc": "^1.7.0",
+    "@zenstackhq/trpc": "^2.2.4",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.51.0",
     "prettier": "^3.2.4",
-    "prisma": "^5.8.1",
+    "prisma": "5.15.x",
     "tsx": "^3.14.0",
     "typescript": "^5.3.3",
-    "zenstack": "^1.7.0"
+    "zenstack": "^2.2.4"
   },
   "eslintConfig": {
     "root": true,

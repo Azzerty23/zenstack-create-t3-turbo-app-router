@@ -1,6 +1,12 @@
 "use client";
 
-import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
+import {
+  Anchor,
+  Button,
+  Checkbox,
+  PasswordInput,
+  TextInput,
+} from "@mantine/core";
 import { IconAlertCircle, IconArrowRight } from "@tabler/icons-react";
 import { useFormState, useFormStatus } from "react-dom";
 
@@ -19,10 +25,9 @@ export function SignUpForm() {
         label={
           <>
             I accept the{" "}
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#" className="text-primary-700 hover:underline">
+            <Anchor href="#" size="sm">
               Terms and Conditions
-            </a>
+            </Anchor>
           </>
         }
         required
@@ -59,7 +64,7 @@ function SignUpButton() {
       className="mt-4 w-full"
       aria-disabled={pending}
     >
-      Create account <IconArrowRight className="ml-auto h-5 w-5 text-gray-50" />
+      Create account <IconArrowRight className="ml-auto h-5 w-5" />
     </Button>
   );
 }

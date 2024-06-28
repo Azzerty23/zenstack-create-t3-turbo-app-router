@@ -18,9 +18,9 @@ plugin prisma {
 }
 
 plugin trpc {
-  provider = '@zenstackhq/trpc'
-  output = '../../api/src/generated'
-  generateClientHelpers = 'next'
+    provider = '@zenstackhq/trpc'
+    output = '../../api/src/generated'
+    generateClientHelpers = 'next'
 }
 
 model User {
@@ -28,7 +28,7 @@ model User {
     name          String
     email         String    @email @unique
     emailVerified DateTime?
-    password      String   @password @omit
+    password      String    @password @omit
     role          String    @default("user")
     image         String?
     createdPosts  Post[]
@@ -44,11 +44,12 @@ model Post {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    authorId String
-    author   User   @relation(fields: [authorId], references: [id])
+    authorId  String   @default(auth().id)
+    author    User     @relation(fields: [authorId], references: [id])
 
     @@index([name])
 
+    @@deny('delete', authorId != auth().id)
     @@allow('all', true)
 }
 
@@ -66,7 +67,7 @@ model Account {
     id_token          String?
     session_state     String?
 
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
 }

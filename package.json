@@ -14,6 +14,7 @@
     "db:push": "pnpm -F db db:push",
     "db:studio": "pnpm -F db db:studio",
     "dev": "turbo dev --parallel",
+    "dev:next": "pnpm -F nextjs dev",
     "start": "turbo start --parallel",
     "format": "turbo format --continue -- --cache --cache-location='node_modules/.cache/.prettiercache'",
     "format:fix": "turbo format --continue -- --write --cache --cache-location='node_modules/.cache/.prettiercache'",

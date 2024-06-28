@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { CreatePost } from "@/app/_components/create-post";
 import { api } from "@/trpc/server";
-import { Button } from "@mantine/core";
+import { Anchor, Button } from "@mantine/core";
 
 import { auth, signOut } from "@acme/auth";
 import { MyButton } from "@acme/ui";
@@ -18,7 +18,8 @@ export default async function Home() {
           Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
         </h1>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
+          <Anchor
+            component={Link}
             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
             href="https://create.t3.gg/en/usage/first-steps"
             target="_blank"
@@ -28,7 +29,7 @@ export default async function Home() {
               Just the basics - Everything you need to know to set up your
               database and authentication.
             </div>
-          </Link>
+          </Anchor>
           <Link
             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
             href="https://create.t3.gg/en/introduction"
@@ -42,12 +43,12 @@ export default async function Home() {
           </Link>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
+          <p className="text-2xl">
             {hello ? hello.greeting : "Loading tRPC query..."}
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-center text-2xl text-white">
+            <p className="text-center text-2xl">
               {session && <span>Logged in as {session.user.name}</span>}
             </p>
             <LoginOutButton />

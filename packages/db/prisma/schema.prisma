@@ -30,6 +30,7 @@ model User {
   sessions      Session[]
 }
 
+/// @@deny('delete', authorId != auth().id)
 /// @@allow('all', true)
 model Post {
   id        Int      @id() @default(autoincrement())

@@ -15,9 +15,9 @@ export function LoginForm() {
   const [code, action] = useFormState(authenticate, undefined);
 
   return (
-    <form action={action} className="space-y-3">
+    <form action={action} className="space-y-3 text-black">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className="mb-3 text-2xl text-black">Please log in to continue.</h1>
+        <h1 className="mb-3 text-2xl">Please log in to continue.</h1>
         <div className="w-full">
           <div>
             <label
@@ -85,7 +85,7 @@ function LoginButton() {
       className="mt-4 w-full"
       aria-disabled={pending}
     >
-      Log in <IconArrowRight className="ml-auto h-5 w-5 text-gray-50" />
+      Log in <IconArrowRight className="ml-auto h-5 w-5" />
     </Button>
   );
 }

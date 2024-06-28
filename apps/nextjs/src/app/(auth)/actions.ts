@@ -26,7 +26,7 @@ export async function authenticate(
       redirectTo: "/",
     });
   } catch (error) {
-    if ((error as Error).message.includes("CredentialsSignin")) {
+    if ((error as Error).message.includes("credentialssignin")) {
       return "CredentialsSignin";
     }
     // We must rethrow the error here to handle redirection
