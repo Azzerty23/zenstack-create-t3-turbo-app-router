@@ -4,8 +4,8 @@
 @import "@acme/mantine-tailwind-config/globals.css";
 
 @layer app {
-  a {
+  /*  Add your custom styles here. Example: */
+  /* a {
     color: #00defb;
-    text-decoration: none;
-  }
+  } */
 }

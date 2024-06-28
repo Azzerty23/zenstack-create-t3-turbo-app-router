@@ -3,19 +3,20 @@
 @layer tailwind {
   @tailwind base;
   /* Correct the conflicts between Mantine and Tailwind */
+  /* Tailwind preflight should be disabled in tailwind.config.ts */
+
   /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
-
   /* https://github.com/tailwindlabs/tailwindcss/issues/6979 */
-  *,
+  *:not([class*="mantine"]),
   ::before,
   ::after {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     border-width: 0;
-    border-style: solid;
-    border-color: currentColor;
+    /* border-style: solid; */
+    /* border-color: currentColor; */
   }
 
   ::before,
@@ -57,7 +58,7 @@
 3. Ensure horizontal rules are visible by default.
 */
 
-  hr {
+  hr:not([class*="mantine"]) {
     height: 0; /* 1 */
     color: inherit; /* 2 */
     border-top-width: 1px; /* 3 */
@@ -67,29 +68,30 @@
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
 
-  abbr:where([title]) {
+  abbr:where([title]):not([class*="mantine"]) {
     text-decoration: underline dotted;
   }
 
   /*
 Remove the default font size and weight for headings.
+/!\ Do not work, too specific and can't be overriden by Tailwind (text-2xl, etc.)
 */
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  /* h1:not([class*="mantine"]),
+  h2:not([class*="mantine"]),
+  h3:not([class*="mantine"]),
+  h4:not([class*="mantine"]),
+  h5:not([class*="mantine"]),
+  h6:not([class*="mantine"]) {
     font-size: inherit;
     font-weight: inherit;
-  }
+  } */
 
   /*
 Reset links to optimize for opt-in styling instead of opt-out.
 */
 
-  a {
+  a:not([class*="mantine"]) {
     color: inherit;
     text-decoration: inherit;
   }
@@ -98,8 +100,8 @@ Reset links to optimize for opt-in styling instead of opt-out.
 Add the correct font weight in Edge and Safari.
 */
 
-  b,
-  strong {
+  b:not([class*="mantine"]),
+  strong:not([class*="mantine"]) {
     font-weight: bolder;
   }
 
@@ -108,10 +110,10 @@ Add the correct font weight in Edge and Safari.
 2. Correct the odd `em` font sizing in all browsers.
 */
 
-  code,
-  kbd,
-  samp,
-  pre {
+  code:not([class*="mantine"]),
+  kbd:not([class*="mantine"]),
+  samp:not([class*="mantine"]),
+  pre:not([class*="mantine"]) {
     font-family: "fontFamily.mono", ui-monospace, "SFMono-Regular", "Menlo",
       "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace; /* 1 */
     font-size: 1em; /* 2 */
@@ -121,7 +123,7 @@ Add the correct font weight in Edge and Safari.
 Add the correct font size in all browsers.
 */
 
-  small {
+  small:not([class*="mantine"]) {
     font-size: 80%;
   }
 
@@ -129,19 +131,19 @@ Add the correct font size in all browsers.
 Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 */
 
-  sub,
-  sup {
+  sub:not([class*="mantine"]),
+  sup:not([class*="mantine"]) {
     font-size: 75%;
     line-height: 0;
     position: relative;
     vertical-align: baseline;
   }
 
-  sub {
+  sub:not([class*="mantine"]) {
     bottom: -0.25em;
   }
 
-  sup {
+  sup:not([class*="mantine"]) {
     top: -0.5em;
   }
 
@@ -151,7 +153,7 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 3. Remove gaps between table borders by default.
 */
 
-  table {
+  table:not([class*="mantine"]) {
     text-indent: 0; /* 1 */
     border-color: inherit; /* 2 */
     border-collapse: collapse; /* 3 */
@@ -163,11 +165,11 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 3. Remove default padding in all browsers.
 */
 
-  button,
-  input,
-  optgroup,
-  select,
-  textarea {
+  button:not([class*="mantine"]),
+  input:not([class*="mantine"]),
+  optgroup:not([class*="mantine"]),
+  select:not([class*="mantine"]),
+  textarea:not([class*="mantine"]) {
     font-family: inherit; /* 1 */
     font-size: 100%; /* 1 */
     line-height: inherit; /* 1 */
@@ -180,8 +182,8 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 Remove the inheritance of text transform in Edge and Firefox.
 */
 
-  button,
-  select {
+  button:not([class*="mantine"]),
+  select:not([class*="mantine"]) {
     text-transform: none;
   }
 
@@ -190,10 +192,10 @@ Remove the inheritance of text transform in Edge and Firefox.
 2. Remove default button styles.
 */
 
-  button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
+  button:not([class*="mantine"]),
+  [type="button"]:not([class*="mantine"]),
+  [type="reset"]:not([class*="mantine"]),
+  [type="submit"]:not([class*="mantine"]) {
     -webkit-appearance: button; /* 1 */
     /* background-color: transparent;  Mantineと競合してボタンが透明になってしまうためコメントアウト */
     background-image: none; /* 2 */
@@ -203,7 +205,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 Use the modern Firefox focus style for all focusable elements.
 */
 
-  :-moz-focusring {
+  :-moz-focusring:not([class*="mantine"]) {
     outline: auto;
   }
 
@@ -211,7 +213,7 @@ Use the modern Firefox focus style for all focusable elements.
 Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
 */
 
-  :-moz-ui-invalid {
+  :-moz-ui-invalid:not([class*="mantine"]) {
     box-shadow: none;
   }
 
@@ -219,7 +221,7 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
 Add the correct vertical alignment in Chrome and Firefox.
 */
 
-  progress {
+  progress:not([class*="mantine"]) {
     vertical-align: baseline;
   }
 
@@ -227,8 +229,8 @@ Add the correct vertical alignment in Chrome and Firefox.
 Correct the cursor style of increment and decrement buttons in Safari.
 */
 
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
+  ::-webkit-inner-spin-button:not([class*="mantine"]),
+  ::-webkit-outer-spin-button:not([class*="mantine"]) {
     height: auto;
   }
 
@@ -237,7 +239,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 2. Correct the outline style in Safari.
 */
 
-  [type="search"] {
+  [type="search"]:not([class*="mantine"]) {
     -webkit-appearance: textfield; /* 1 */
     outline-offset: -2px; /* 2 */
   }
@@ -246,7 +248,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 Remove the inner padding in Chrome and Safari on macOS.
 */
 
-  ::-webkit-search-decoration {
+  ::-webkit-search-decoration:not([class*="mantine"]) {
     -webkit-appearance: none;
   }
 
@@ -255,7 +257,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 2. Change font properties to `inherit` in Safari.
 */
 
-  ::-webkit-file-upload-button {
+  ::-webkit-file-upload-button:not([class*="mantine"]) {
     -webkit-appearance: button; /* 1 */
     font: inherit; /* 2 */
   }
@@ -264,7 +266,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 Add the correct display in Chrome and Safari.
 */
 
-  summary {
+  summary:not([class*="mantine"]) {
     display: list-item;
   }
 
@@ -272,34 +274,34 @@ Add the correct display in Chrome and Safari.
 Removes the default spacing and border for appropriate elements.
 */
 
-  blockquote,
-  dl,
-  dd,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  hr,
-  figure,
-  p,
-  pre {
+  blockquote:not([class*="mantine"]),
+  dl:not([class*="mantine"]),
+  dd:not([class*="mantine"]),
+  h1:not([class*="mantine"]),
+  h2:not([class*="mantine"]),
+  h3:not([class*="mantine"]),
+  h4:not([class*="mantine"]),
+  h5:not([class*="mantine"]),
+  h6:not([class*="mantine"]),
+  hr:not([class*="mantine"]),
+  figure:not([class*="mantine"]),
+  p:not([class*="mantine"]),
+  pre:not([class*="mantine"]) {
     margin: 0;
   }
 
-  fieldset {
+  fieldset:not([class*="mantine"]) {
     margin: 0;
     padding: 0;
   }
 
-  legend {
+  legend:not([class*="mantine"]) {
     padding: 0;
   }
 
-  ol,
-  ul,
-  menu {
+  ol:not([class*="mantine"]),
+  ul:not([class*="mantine"]),
+  menu:not([class*="mantine"]) {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -309,7 +311,7 @@ Removes the default spacing and border for appropriate elements.
 Prevent resizing textareas horizontally by default.
 */
 
-  textarea {
+  textarea:not([class*="mantine"]) {
     resize: vertical;
   }
 
@@ -318,8 +320,8 @@ Prevent resizing textareas horizontally by default.
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-  input::placeholder,
-  textarea::placeholder {
+  input::placeholder:not([class*="mantine"]),
+  textarea::placeholder:not([class*="mantine"]) {
     opacity: 1; /* 1 */
     color: #9ca3af; /* 2 */
   }
@@ -328,7 +330,7 @@ Prevent resizing textareas horizontally by default.
 Set the default cursor for buttons.
 */
 
-  button,
+  button:not([class*="mantine"]),
   [role="button"] {
     cursor: pointer;
   }
@@ -336,8 +338,8 @@ Set the default cursor for buttons.
   /*
 Make sure disabled buttons don't get the pointer cursor.
 */
-  :disabled {
-    cursor: default;
+  :not([class*="mantine"]):disabled {
+    cursor: not-allowed;
   }
 
   /*
@@ -346,14 +348,14 @@ Make sure disabled buttons don't get the pointer cursor.
  This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
-  img,
-  svg,
-  video,
-  canvas,
-  audio,
-  iframe,
-  embed,
-  object {
+  img:not([class*="mantine"]),
+  svg:not([class*="mantine"]),
+  video:not([class*="mantine"]),
+  canvas:not([class*="mantine"]),
+  audio:not([class*="mantine"]),
+  iframe:not([class*="mantine"]),
+  embed:not([class*="mantine"]),
+  object:not([class*="mantine"]) {
     display: block; /* 1 */
     vertical-align: middle; /* 2 */
   }
@@ -362,8 +364,8 @@ Make sure disabled buttons don't get the pointer cursor.
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
 
-  img,
-  video {
+  img:not([class*="mantine"]),
+  video:not([class*="mantine"]) {
     max-width: 100%;
     height: auto;
   }
