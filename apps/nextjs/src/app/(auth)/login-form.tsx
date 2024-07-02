@@ -82,10 +82,11 @@ function LoginButton() {
     <Button
       loading={pending}
       type="submit"
-      className="mt-4 w-full"
+      mt="md"
+      fullWidth
       aria-disabled={pending}
     >
-      Log in <IconArrowRight className="ml-auto h-5 w-5" />
+      Log in <IconArrowRight size="1.25rem" />
     </Button>
   );
 }

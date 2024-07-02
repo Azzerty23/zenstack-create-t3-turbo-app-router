@@ -1,32 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Title } from "@mantine/core";
+import { Logo } from "@/app/_components/Logo";
+import { Center, Overlay, Stack, Title } from "@mantine/core";
 
 import { SignUpForm } from "../signup-form";
 
 export default function Signup() {
   return (
-    <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('/auth-bg.jpg')] bg-cover px-6 pt-4 lg:pt-8">
-      <Link href="/">
-        <div className="mb-6 flex items-center space-x-4 lg:mb-10">
-          <Image
-            src="/favicon.ico"
-            className="rounded-full border border-gray-600"
-            width={42}
-            height={42}
-            alt="logo"
-          />
+    <Center className="relative h-screen">
+      <Image src="/auth-bg.jpeg" fill className="object-cover" alt="" />
+      <Overlay zIndex={0} color="#000" backgroundOpacity={0.55} />
+      {/* Set "isolate" to create a new stacking context */}
+      <Stack className="isolate">
+        <Link
+          href="/"
+          className="mb-6 flex items-center justify-center space-x-4 text-white lg:mb-10"
+        >
+          <Logo width={42} height={42} />
           <Title className="text-5xl">Welcome to Todo</Title>
-        </div>
-      </Link>
-      <div className="w-full items-center justify-center rounded-lg bg-white shadow md:mt-0 lg:flex lg:max-w-screen-md xl:p-0">
-        <div className="w-full space-y-8 p-6 sm:p-8 lg:p-16">
+        </Link>
+        <div className="space-y-8 rounded-lg bg-white p-6 shadow sm:p-8 md:mt-0 lg:max-w-screen-md lg:p-16">
           <h2 className="text-2xl font-bold text-gray-900 lg:text-3xl">
             Create a Free Account
           </h2>
           <SignUpForm />
         </div>
-      </div>
-    </div>
+      </Stack>
+    </Center>
   );
 }

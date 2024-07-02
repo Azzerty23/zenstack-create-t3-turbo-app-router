@@ -35,7 +35,7 @@ export const authConfig = {
     // while this file is also used in non-Node.js environments
   ],
   callbacks: {
-    session: ({ session, token }: {session: Session, token?: JWT}) => {
+    session: ({ session, token }: { session: Session; token?: JWT }) => {
       //   if (session.user) {
       //     const user = await db.user.findUniqueOrThrow({
       //       where: { id: token.sub },
