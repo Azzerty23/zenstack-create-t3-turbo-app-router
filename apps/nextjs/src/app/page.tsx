@@ -7,6 +7,8 @@ import { Anchor, Button } from "@mantine/core";
 import { auth, signOut } from "@acme/auth";
 import { MyButton } from "@acme/ui";
 
+import { CrudPosts } from "./_components/CrudPosts";
+
 export default async function Home() {
   const hello = await api.hello.query({ text: "from tRPC" });
   const session = await auth();
@@ -58,6 +60,7 @@ export default async function Home() {
         </div>
 
         <CrudShowcase />
+        <CrudPosts />
       </div>
     </main>
   );

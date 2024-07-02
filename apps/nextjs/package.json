@@ -13,6 +13,7 @@
   "dependencies": {
     "@acme/api": "workspace:*",
     "@acme/auth": "workspace:*",
+    "@acme/hooks": "workspace:*",
     "@acme/db": "workspace:*",
     "@acme/mantine-tailwind-config": "workspace:*",
     "@acme/ui": "workspace:*",

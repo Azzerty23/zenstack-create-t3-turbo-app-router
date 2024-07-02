@@ -32,6 +32,7 @@
     "@faker-js/faker": "^8.2.0",
     "@types/node": "^20.11.5",
     "@zenstackhq/trpc": "^2.2.4",
+    "@zenstackhq/tanstack-query": "^2.2.4",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.51.0",
     "prettier": "^3.2.4",

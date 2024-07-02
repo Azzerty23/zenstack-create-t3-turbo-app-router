@@ -23,6 +23,13 @@ plugin trpc {
     generateClientHelpers = 'next'
 }
 
+plugin hooks {
+    provider = '@zenstackhq/tanstack-query'
+    target = 'react'
+    version = 'v4'
+    output = "../../hooks/generated"
+}
+
 model User {
     id            String    @id @default(cuid())
     name          String

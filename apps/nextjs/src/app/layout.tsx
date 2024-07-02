@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { theme } from "@/config/theme";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
@@ -36,7 +37,9 @@ export default function RootLayout({
       </head>
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider headers={headers()}>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
+          <ReactQueryProvider>
+            <MantineProvider theme={theme}>{children}</MantineProvider>
+          </ReactQueryProvider>
         </TRPCReactProvider>
       </body>
     </html>
