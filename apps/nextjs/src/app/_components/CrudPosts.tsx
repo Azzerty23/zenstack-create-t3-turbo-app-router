@@ -1,9 +1,12 @@
 "use client";
 
-import { useFindManyPost } from "@acme/hooks";
+import { Button } from "@mantine/core";
+
+import { useCreatePost, useFindManyPost } from "@acme/hooks";
 
 export const CrudPosts = () => {
   const { data: posts } = useFindManyPost();
+  const { mutate: createPost } = useCreatePost();
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -17,6 +20,17 @@ export const CrudPosts = () => {
             <p className="text-gray-500">{post.createdAt.toDateString()}</p>
           </div>
         ))}
+        <Button
+          onClick={() =>
+            createPost({
+              data: {
+                name: "test5",
+              },
+            })
+          }
+        >
+          Create Post
+        </Button>
       </div>
     </div>
   );
