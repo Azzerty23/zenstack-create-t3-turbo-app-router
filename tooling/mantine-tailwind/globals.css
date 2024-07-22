@@ -11,9 +11,7 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
   /* https://github.com/tailwindlabs/tailwindcss/issues/6979 */
-  *:not([class*="mantine"]),
-  ::before,
-  ::after {
+  *:not([class*="mantine"]) {
     box-sizing: border-box;
     border-width: 0;
     border-style: solid;
@@ -79,12 +77,12 @@ Remove the default font size and weight for headings.
 /!\ Do not work, too specific and can't be overriden by Tailwind (text-2xl, etc.)
 */
 
-  /* h1:not([class*="mantine"]),
-  h2:not([class*="mantine"]),
-  h3:not([class*="mantine"]),
-  h4:not([class*="mantine"]),
-  h5:not([class*="mantine"]),
-  h6:not([class*="mantine"]) {
+  /* h1 :not(.mantine-Title-root),
+  h2 :not(.mantine-Title-root),
+  h3 :not(.mantine-Title-root),
+  h4 :not(.mantine-Title-root),
+  h5 :not(.mantine-Title-root),
+  h6 :not(.mantine-Title-root) {
     font-size: inherit;
     font-weight: inherit;
   } */
@@ -97,6 +95,13 @@ Reset links to optimize for opt-in styling instead of opt-out.
     /* color: inherit; */
     text-decoration: inherit;
   }
+  /* a.mantine-UnstyledButton-root {
+    color: var(--button-color);
+  }
+  a.mantine-Anchor-root {
+    color: var(--mantine-color-anchor);
+    text-decoration: var(--_text-decoration, none);
+  } */
 
   /*
 Add the correct font weight in Edge and Safari.
